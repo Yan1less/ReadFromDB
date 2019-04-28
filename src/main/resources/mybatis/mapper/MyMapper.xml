@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yan1less.readdb.mapper.MyMapper">
+
+
+
+
+
+<!--    nova-->
+
+    <select id="selectAarea" resultType="com.yan1less.readdb.pojo.A.Aarea">
+        select hostname,vcpus,root_gb,memory_mb,created_at from instances;
+    </select>
+
+    <select id="selectBarea" resultType="com.yan1less.readdb.pojo.B.BSql">
+        select running_vms,memory_mb_used,local_gb_used,free_ram_mb,free_disk_gb,disk_available_least from compute_nodes;
+    </select>
+
+    <select id="selectDarea" resultType="com.yan1less.readdb.pojo.D.DSql">
+        select running_vms,vcpus_used,memory_mb_used from compute_nodes;
+    </select>
+
+<!--    cinder-->
+    <select id="selectEVolume" resultType="java.lang.String">
+        select in_use from quota_usages where resource ='volumes';
+    </select>
+    <select id="selectEGigabytes" resultType="java.lang.String">
+        select in_use from quota_usages where resource ='gigabytes';
+    </select>
+    <select id="selectEVolumesnap" resultType="java.lang.String">
+        select in_use from quota_usages where resource ='volumesnap';
+    </select>
+
+
+
+<!--    neution-->
+    <select id="selectFarea" resultType="java.lang.String">
+        select in_use from quotausages where resource = #{resource};
+    </select>
+
+    <select id="selectGSubnets" resultType="com.yan1less.readdb.pojo.G.ipamsubnets">
+        select * from ipamsubnets;
+    </select>
+
+    <select id="selectGAllocations" resultType="com.yan1less.readdb.pojo.G.ipamallocations">
+        select * from ipamallocations;
+    </select>
+
+
+
+
+</mapper>
