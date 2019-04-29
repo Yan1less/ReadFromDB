@@ -39,32 +39,32 @@ public class MyController {
 //        return mapper.selectAll();
 //    }
 
-    @RequestMapping("/aarea")
+    @RequestMapping("/aarea.json")
     public AareaDeail Aarea(){
         return service.selectAarea();
     }
 
-    @RequestMapping("/barea")
+    @RequestMapping("/barea.json")
     public BFront Barea(){
         return service.selectBarea();
     }
 
-    @RequestMapping("/darea")
+    @RequestMapping("/darea.json")
     public String Darea(){
         return service.selectDarea();
     }
 
-    @RequestMapping("/earea")
+    @RequestMapping("/earea.json")
     public String Earea(){
         return service.selectEarea();
     }
 
-    @RequestMapping("/farea")
+    @RequestMapping("/farea.json")
     public String Farea(){
         return service.selectFarea();
     }
 
-    @RequestMapping("/garea")
+    @RequestMapping("/garea.json")
     public String Garea(){
         return service.selectGarea();
     }
