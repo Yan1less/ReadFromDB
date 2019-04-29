@@ -1,10 +1,11 @@
-#server:
-#  port: 9999
+server:
+  port: 8899
 #  servlet:
 #    context-path: /note
 spring:
-#  messages:
-#    basename: i18n.login
+  application:
+    name: dashboard
+
   thymeleaf:
     cache: false
   datasource:
@@ -46,3 +47,9 @@ spring:
 mybatis:
   config-location: classpath:mybatis/mybatis-config.xml
   mapper-locations: classpath:mybatis/mapper/*.xml
+eureka:
+  instance:
+    prefer-ip-address: true
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
