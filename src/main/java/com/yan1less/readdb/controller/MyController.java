@@ -20,6 +20,7 @@ import java.util.List;
  * @Description TODO
  **/
 @RestController
+@RequestMapping("/dashboard")
 public class MyController {
     @Autowired
     private MySQLMapper mapper;
@@ -27,10 +28,16 @@ public class MyController {
     @Autowired
     private MyService service;
 
-    @RequestMapping("/test11")
-    public List<blogtext> test11(){
-        return mapper.selectAll();
+
+    @RequestMapping("/test")
+    public String test(){
+        return "this is test";
     }
+
+//    @RequestMapping("/test11")
+//    public List<blogtext> test11(){
+//        return mapper.selectAll();
+//    }
 
     @RequestMapping("/aarea")
     public AareaDeail Aarea(){
