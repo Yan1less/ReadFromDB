@@ -1,22 +1,22 @@
 package com.yan1less.readdb.pojo.D;
 
 public class DFront1 {
-    private String Instance_Used;
-    private String Instance_Total;
+    private Integer Instance_Used;
+    private Integer Instance_Total;
 
-    public String getInstance_Used() {
+    public Integer getInstance_Used() {
         return Instance_Used;
     }
 
-    public void setInstance_Used(String instance_Used) {
+    public void setInstance_Used(Integer instance_Used) {
         Instance_Used = instance_Used;
     }
 
-    public String getInstance_Total() {
+    public Integer getInstance_Total() {
         return Instance_Total;
     }
 
-    public void setInstance_Total(String instance_Total) {
+    public void setInstance_Total(Integer instance_Total) {
         Instance_Total = instance_Total;
     }
 }

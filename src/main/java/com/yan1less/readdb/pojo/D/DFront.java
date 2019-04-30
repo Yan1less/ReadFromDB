@@ -2,31 +2,31 @@ package com.yan1less.readdb.pojo.D;
 
 public class DFront {
 
-    private DFront1 dFront1;
-    private DFront2 dFront2;
-    private DFront3 dFront3;
+    private DFront1 Instance;
+    private DFront2 VCPU;
+    private DFront3 Memory;
 
-    public DFront1 getdFront1() {
-        return dFront1;
+    public DFront1 getInstance() {
+        return Instance;
     }
 
-    public void setdFront1(DFront1 dFront1) {
-        this.dFront1 = dFront1;
+    public void setInstance(DFront1 instance) {
+        Instance = instance;
     }
 
-    public DFront2 getdFront2() {
-        return dFront2;
+    public DFront2 getVCPU() {
+        return VCPU;
     }
 
-    public void setdFront2(DFront2 dFront2) {
-        this.dFront2 = dFront2;
+    public void setVCPU(DFront2 VCPU) {
+        this.VCPU = VCPU;
     }
 
-    public DFront3 getdFront3() {
-        return dFront3;
+    public DFront3 getMemory() {
+        return Memory;
     }
 
-    public void setdFront3(DFront3 dFront3) {
-        this.dFront3 = dFront3;
+    public void setMemory(DFront3 memory) {
+        Memory = memory;
     }
 }

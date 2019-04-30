@@ -1,22 +1,22 @@
 package com.yan1less.readdb.pojo.D;
 
 public class DFront3 {
-    private String Memory_Used;
-    private String Memory_Total;
+    private Integer Memory_Used;
+    private Integer Memory_Total;
 
-    public String getMemory_Used() {
+    public Integer getMemory_Used() {
         return Memory_Used;
     }
 
-    public void setMemory_Used(String memory_Used) {
+    public void setMemory_Used(Integer memory_Used) {
         Memory_Used = memory_Used;
     }
 
-    public String getMemory_Total() {
+    public Integer getMemory_Total() {
         return Memory_Total;
     }
 
-    public void setMemory_Total(String memory_Total) {
+    public void setMemory_Total(Integer memory_Total) {
         Memory_Total = memory_Total;
     }
 }

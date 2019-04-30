@@ -1,22 +1,21 @@
 package com.yan1less.readdb.pojo.F;
 
 public class FRouting {
-    private String Routing_Used;
-    private String Routing_Total;
+    private Integer Routing_Used;
+    private Integer Routing_Total;
 
-    public String getRouting_Used() {
+    public Integer getRouting_Used() {
         return Routing_Used;
     }
 
-    public void setRouting_Used(String routing_Used) {
+    public void setRouting_Used(Integer routing_Used) {
         Routing_Used = routing_Used;
     }
 
-    public String getRouting_Total() {
+    public Integer getRouting_Total() {
         return Routing_Total;
     }
-
-    public void setRouting_Total(String routing_Total) {
+    public void setRouting_Total(Integer routing_Total) {
         Routing_Total = routing_Total;
     }
 }

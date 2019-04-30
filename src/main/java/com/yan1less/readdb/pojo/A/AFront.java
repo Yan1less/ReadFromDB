@@ -2,9 +2,9 @@ package com.yan1less.readdb.pojo.A;
 
 public class AFront {
     private String Instance_Name;
-    private String VCPU_Number;
-    private String Disk_Capacity;
-    private String Memory_Capacity;
+    private Integer VCPU_Number;
+    private Integer Disk_Capacity;
+    private Integer Memory_Capacity;
     private String Creation_Time;
 
 
@@ -16,27 +16,27 @@ public class AFront {
         Instance_Name = instance_Name;
     }
 
-    public String getVCPU_Number() {
+    public Integer getVCPU_Number() {
         return VCPU_Number;
     }
 
-    public void setVCPU_Number(String VCPU_Number) {
+    public void setVCPU_Number(Integer VCPU_Number) {
         this.VCPU_Number = VCPU_Number;
     }
 
-    public String getDisk_Capacity() {
+    public Integer getDisk_Capacity() {
         return Disk_Capacity;
     }
 
-    public void setDisk_Capacity(String disk_Capacity) {
+    public void setDisk_Capacity(Integer disk_Capacity) {
         Disk_Capacity = disk_Capacity;
     }
 
-    public String getMemory_Capacity() {
+    public Integer getMemory_Capacity() {
         return Memory_Capacity;
     }
 
-    public void setMemory_Capacity(String memory_Capacity) {
+    public void setMemory_Capacity(Integer memory_Capacity) {
         Memory_Capacity = memory_Capacity;
     }
 

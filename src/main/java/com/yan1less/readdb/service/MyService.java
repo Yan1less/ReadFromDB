@@ -32,7 +32,7 @@ public class MyService {
     private MyMapper mapper;
 
 
-    private static String defaultsum = "1998";
+    private static Integer defaultsum = 1998;
 
     public AareaDeail selectAarea() {
         AareaDeail aareaDeail = new AareaDeail();
@@ -50,9 +50,9 @@ public class MyService {
         for (Aarea a :aareas){
             AFront aFront = new AFront();
             aFront.setInstance_Name(a.getHostname());
-            aFront.setVCPU_Number(a.getVcpus());
-            aFront.setDisk_Capacity(a.getRoot_gb());
-            aFront.setMemory_Capacity(a.getMemory_mb());
+            aFront.setVCPU_Number(Integer.parseInt(a.getVcpus()));
+            aFront.setDisk_Capacity(Integer.parseInt(a.getRoot_gb()));
+            aFront.setMemory_Capacity(Integer.parseInt(a.getMemory_mb()));
             //用“当前时间- create_at时间”， 计算出天数，再变成“年，月，日”格式的数据
             long before = Timestamp.valueOf(a.getCreated_at()).getTime();
             long after = Timestamp.valueOf(now).getTime();
@@ -80,12 +80,12 @@ public class MyService {
         }
 
         BFront bfront = new BFront();
-        bfront.setRunning_Instance(Running_vms.toString());
-        bfront.setEnabled_Memory(Memory_mb_used.toString());
-        bfront.setDisk_Used(Local_gb_used.toString());
-        bfront.setDisk_Available(Disk_available_least.toString());
-        bfront.setDisk_Free(Free_ram_mb.toString());
-        bfront.setRAM_Free(Free_disk_gb.toString());
+        bfront.setRunning_Instance(Running_vms);
+        bfront.setEnabled_Memory(Memory_mb_used);
+        bfront.setDisk_Used(Local_gb_used);
+        bfront.setDisk_Available(Disk_available_least);
+        bfront.setDisk_Free(Free_ram_mb);
+        bfront.setRAM_Free(Free_disk_gb);
         return bfront;
     }
     //返回带有对象名的json
@@ -100,22 +100,21 @@ public class MyService {
         }
 
         DFront1 dFront1 = new DFront1();
-        dFront1.setInstance_Used(Instance_Used.toString());
-        dFront1.setInstance_Total("1998");
+        dFront1.setInstance_Used(Instance_Used);
+        dFront1.setInstance_Total(defaultsum);
         DFront2 dFront2 = new DFront2();
-        dFront2.setVCPU_Used(VCPU_Used.toString());
-        dFront2.setVCPU_Total("1998");
+        dFront2.setVCPU_Used(VCPU_Used);
+        dFront2.setVCPU_Total(defaultsum);
         DFront3 dFront3 = new DFront3();
-        dFront3.setMemory_Used(Memory_Used.toString());
-        dFront3.setMemory_Total("1998");
+        dFront3.setMemory_Used(Memory_Used);
+        dFront3.setMemory_Total(defaultsum);
 
         DFront dFront = new DFront();
 
 
-
-        dFront.setdFront1(dFront1);
-        dFront.setdFront2(dFront2);
-        dFront.setdFront3(dFront3);
+        dFront.setInstance(dFront1);
+        dFront.setVCPU(dFront2);
+        dFront.setMemory(dFront3);
 
         //gson测试
         Gson gson = new Gson();
@@ -123,14 +122,7 @@ public class MyService {
         String b = gson.toJson(dFront2);
         String c = gson.toJson(dFront3);
 
-
-
-
-
-
-
-
-        return  "{"+a+","+b+","+c+"}";
+        return  "["+a+","+b+","+c+"]";
     }
 
     public String selectEarea() {
@@ -139,32 +131,38 @@ public class MyService {
         EFront3 eFront3 = new EFront3();
 
         List<String> volume = mapper.selectEVolume();
-         eFront1.setVolume_Used(
-              String.valueOf(
-                      volume.stream().mapToInt(string -> Integer.parseInt(string)).summaryStatistics().
-                              getSum()
-              )
-         );
-         eFront1.setVolume_Total("1998");
+        eFront1.setVolume_Used(
+                Integer.parseInt(
+                        String.valueOf(
+                                volume.stream().mapToInt(string -> Integer.parseInt(string)).summaryStatistics().
+                                        getSum()
+                        )
+                )
+        );
+        eFront1.setVolume_Total(defaultsum);
 
         List<String> volumesnap = mapper.selectEVolumesnap();
         eFront2.setVolume_Snapshot_Used(
-                String.valueOf(
-                        volumesnap.stream().mapToInt(string -> Integer.parseInt(string)).summaryStatistics().
-                                getSum()
+                Integer.parseInt(
+                        String.valueOf(
+                                volumesnap.stream().mapToInt(string -> Integer.parseInt(string)).summaryStatistics().
+                                        getSum()
+                        )
                 )
         );
-         eFront2.setVolume_Snapshot_Total("1998");
+        eFront2.setVolume_Snapshot_Total(defaultsum);
 
 
         List<String> gigabytes = mapper.selectEGigabytes();
         eFront3.setVolume_Storage_Used(
-                String.valueOf(
-                        gigabytes.stream().mapToInt(string -> Integer.parseInt(string)).summaryStatistics().
-                                getSum()
+                Integer.parseInt(
+                        String.valueOf(
+                                gigabytes.stream().mapToInt(string -> Integer.parseInt(string)).summaryStatistics().
+                                        getSum()
+                        )
                 )
         );
-        eFront3.setVolume_Storage_Total("1998");
+        eFront3.setVolume_Storage_Total(defaultsum);
 
         Gson gson = new Gson();
         return "["+gson.toJson(eFront1)+","+
@@ -179,15 +177,15 @@ public class MyService {
         FRouting fRouting = new FRouting();
         FSecurity fSecurity = new FSecurity();
 
-        fFloat.setFloat_IP_Used(mapper.selectFarea("floatingip"));
+        fFloat.setFloat_IP_Used(Integer.parseInt(mapper.selectFarea("floatingip")));
         fFloat.setFloat_IP_Total(defaultsum);
-        fSecurity.setSecurity_Group_Used(mapper.selectFarea("security_group"));
+        fSecurity.setSecurity_Group_Used(Integer.parseInt(mapper.selectFarea("security_group")));
         fSecurity.setSecurity_Group_Total(defaultsum);
-        fInternet.setInternet_Used(mapper.selectFarea("network"));
+        fInternet.setInternet_Used(Integer.parseInt(mapper.selectFarea("network")));
         fInternet.setInternet_Total(defaultsum);
-        fPort.setPort_Used(mapper.selectFarea("port"));
+        fPort.setPort_Used(Integer.parseInt(mapper.selectFarea("port")));
         fPort.setPort_Total(defaultsum);
-        fRouting.setRouting_Used(mapper.selectFarea("router"));
+        fRouting.setRouting_Used(Integer.parseInt(mapper.selectFarea("router")));
         fRouting.setRouting_Total(defaultsum);
 
         Gson gson = new Gson();
