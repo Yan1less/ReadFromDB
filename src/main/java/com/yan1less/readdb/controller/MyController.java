@@ -31,7 +31,7 @@ public class MyController {
 
     @RequestMapping("/test")
     public String test(){
-        return "this is test";
+        return "hello";
     }
 
 //    @RequestMapping("/test11")
