@@ -118,11 +118,11 @@ public class MyService {
 
         //gson测试
         Gson gson = new Gson();
-        String a = gson.toJson(dFront1);
+        String a = gson.toJson(dFront);
         String b = gson.toJson(dFront2);
         String c = gson.toJson(dFront3);
 
-        return  "["+a+","+b+","+c+"]";
+        return  "["+a+"]";
     }
 
     public String selectEarea() {
