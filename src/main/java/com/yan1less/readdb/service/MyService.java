@@ -14,10 +14,7 @@ import com.yan1less.readdb.pojo.E.EFront1;
 import com.yan1less.readdb.pojo.E.EFront2;
 import com.yan1less.readdb.pojo.E.EFront3;
 import com.yan1less.readdb.pojo.F.*;
-import com.yan1less.readdb.pojo.G.GFrontall;
-import com.yan1less.readdb.pojo.G.GFrontsub;
-import com.yan1less.readdb.pojo.G.ipamallocations;
-import com.yan1less.readdb.pojo.G.ipamsubnets;
+import com.yan1less.readdb.pojo.G.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -165,8 +162,12 @@ public class MyService {
         eFront3.setVolume_Storage_Total(defaultsum);
 
         Gson gson = new Gson();
-        return "["+gson.toJson(eFront1)+","+
-                gson.toJson(eFront2)+","+gson.toJson(eFront3)+"]";
+
+        EFront eFront = new EFront();
+        eFront.setVolume(eFront1);
+        eFront.setVolume_Snapshot(eFront2);
+        eFront.setVolume_Storage(eFront3);
+        return "["+gson.toJson(eFront)+"]";
 
     }
 
@@ -188,14 +189,16 @@ public class MyService {
         fRouting.setRouting_Used(Integer.parseInt(mapper.selectFarea("router")));
         fRouting.setRouting_Total(defaultsum);
 
-        Gson gson = new Gson();
-        String result = "["+gson.toJson(fFloat)+","+
-                gson.toJson(fSecurity)+","+
-                gson.toJson(fInternet)+","+
-                gson.toJson(fPort)+","+
-                gson.toJson(fRouting)+"]";
 
-        return result;
+        Gson gson = new Gson();
+        FFront fFront = new FFront();
+        fFront.setFloat_IP(fFloat);
+        fFront.setInternet(fInternet);
+        fFront.setPort(fPort);
+        fFront.setRouting(fRouting);
+        fFront.setSecurity(fSecurity);
+
+        return "["+gson.toJson(fFront)+"]";
     }
 
     public String selectGarea() {
@@ -227,18 +230,24 @@ public class MyService {
             }
         }
 
-        StringBuffer result = new StringBuffer("[");
         Gson gson = new Gson();
-        for(GFrontsub gs: frontList){
-            result.append(gson.toJson(gs)+",");
-        }
+        GFront gFront = new GFront();
+        gFront.setAllocations(frontlist2);
+        gFront.setSubnets(frontList);
+        return "["+gson.toJson(gFront)+"]";
 
-        for(GFrontall ga:frontlist2){
-            result.append(gson.toJson(ga)+",");
-        }
-        result.append("]");
-
-
-        return result.toString();
+//        StringBuffer result = new StringBuffer("[");
+//        Gson gson = new Gson();
+//        for(GFrontsub gs: frontList){
+//            result.append(gson.toJson(gs)+",");
+//        }
+//
+//        for(GFrontall ga:frontlist2){
+//            result.append(gson.toJson(ga)+",");
+//        }
+//        result.append("]");
+//
+//
+//        return result.toString();
     }
 }

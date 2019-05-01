@@ -6,33 +6,32 @@ import lombok.Setter;
 
 
 public class EFront {
-    private EFront1 front1;
-    private EFront2 front2;
-    private EFront3 front3;
+    private EFront1 Volume;
+    private EFront2 Volume_Snapshot;
+    private EFront3 Volume_Storage;
 
-
-    public EFront1 getFront1() {
-        return front1;
+    public EFront1 getVolume() {
+        return Volume;
     }
 
-    public void setFront1(EFront1 front1) {
-        this.front1 = front1;
+    public void setVolume(EFront1 volume) {
+        Volume = volume;
     }
 
-    public EFront2 getFront2() {
-        return front2;
+    public EFront2 getVolume_Snapshot() {
+        return Volume_Snapshot;
     }
 
-    public void setFront2(EFront2 front2) {
-        this.front2 = front2;
+    public void setVolume_Snapshot(EFront2 volume_Snapshot) {
+        Volume_Snapshot = volume_Snapshot;
     }
 
-    public EFront3 getFront3() {
-        return front3;
+    public EFront3 getVolume_Storage() {
+        return Volume_Storage;
     }
 
-    public void setFront3(EFront3 front3) {
-        this.front3 = front3;
+    public void setVolume_Storage(EFront3 volume_Storage) {
+        Volume_Storage = volume_Storage;
     }
 }
 
