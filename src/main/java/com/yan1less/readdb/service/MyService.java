@@ -202,52 +202,38 @@ public class MyService {
     }
 
     public String selectGarea() {
-        List<ipamsubnets> list = mapper.selectGSubnets();
+        List<ipamsubnets> subnetList = mapper.selectGSubnets();
         List<GFrontsub> frontList = new ArrayList<>();
 
-        for(int i=0;i<list.size();i++){
+        for(int i=0;i<subnetList.size();i++){
             GFrontsub gFrontsub = new GFrontsub();
             gFrontsub.setName("路由"+(i+1));
-            gFrontsub.setCategory(list.get(i).getId());
+//            gFrontsub.setCategory(list.get(i).getId());
+            //设置子网顺序就按查询的顺序
+            gFrontsub.setCategory(i);
             frontList.add(gFrontsub);
-
         }
-//        for(GFrontsub i:frontList){
-//            System.out.println(i.toString());
-//        }
 
-        List<ipamallocations> list2 = mapper.selectGAllocations();
+        List<ipamallocations> allocationsList = mapper.selectGAllocations();
         List<GFrontall> frontlist2 = new ArrayList<>();
 
-        for(ipamallocations l : list2){
-            for(int i=0;i<list.size();i++){
-                if(list.get(i).getId().equals( l.getIpam_subnet_id())){
+        for(ipamallocations l : allocationsList){
+            for(int i=0;i<subnetList.size();i++){
+                //这里的subnetList与allocationsList都是从数据库读过来的，所以可以判断其ID相等。
+                if(subnetList.get(i).getId().equals( l.getIpam_subnet_id())){
                     GFrontall gFrontall = new GFrontall();
-                    gFrontall.setBelong_category(list.get(i).getId());
+                    gFrontall.setBelong_category(i);
                     gFrontall.setName(l.getIp_address());
                     frontlist2.add(gFrontall);
                 }
             }
         }
-
         Gson gson = new Gson();
         GFront gFront = new GFront();
         gFront.setAllocations(frontlist2);
         gFront.setSubnets(frontList);
         return "["+gson.toJson(gFront)+"]";
 
-//        StringBuffer result = new StringBuffer("[");
-//        Gson gson = new Gson();
-//        for(GFrontsub gs: frontList){
-//            result.append(gson.toJson(gs)+",");
-//        }
-//
-//        for(GFrontall ga:frontlist2){
-//            result.append(gson.toJson(ga)+",");
-//        }
-//        result.append("]");
-//
-//
-//        return result.toString();
+
     }
 }

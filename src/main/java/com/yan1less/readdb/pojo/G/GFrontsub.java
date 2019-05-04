@@ -2,7 +2,7 @@ package com.yan1less.readdb.pojo.G;
 
 public class GFrontsub {
     private String name;
-    private String category;
+    private Integer category;
 
     public String getName() {
         return name;
@@ -12,11 +12,11 @@ public class GFrontsub {
         this.name = name;
     }
 
-    public String getCategory() {
+    public Integer getCategory() {
         return category;
     }
 
-    public void setCategory(String category) {
+    public void setCategory(Integer category) {
         this.category = category;
     }
 
